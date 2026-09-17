@@ -10,7 +10,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for the working agreement and [ADR 0001]
 
 ## Current state
 
-Sprint 0. Issue #2 (proving C# Android export works end to end) is **blocking**; nothing else should be built on top until it passes.
+See the [Sprint 0 milestone](https://github.com/mohammedtebba-aures/anagrimoire/milestone/1).
 
 ## Verify locally
 
