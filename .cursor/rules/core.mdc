@@ -1,0 +1,44 @@
+---
+description: Rules engine constraints for WordRoguelike.Core
+globs: src/WordRoguelike.Core/**/*.cs
+alwaysApply: false
+---
+
+# Core: the rules engine
+
+## Never reference Godot
+
+No `using Godot;`. No `Node`, `Vector2`, `Resource`, `GD.Print`, or any engine
+type in a signature, field or local. This is not a style preference: CI builds
+`WordRoguelike.Core.sln` on a bare .NET runner with no engine present, so an
+engine reference here breaks the pipeline outright.
+
+If a rule seems to need the engine, it belongs in `src/WordRoguelike.Game`, or
+the dependency should be inverted behind an interface defined here.
+
+## All randomness is injected and seeded
+
+Never `new Random()`. Never `Guid.NewGuid()`, `DateTime.Now`, or
+`Environment.TickCount` as a source of variation. RNG arrives as
+`IRandomSource`.
+
+Given the same seed and the same sequence of actions, a run must replay
+identically. Reproducibility is what makes tests, replays, save files and a
+future daily-challenge mode possible.
+
+## Shape
+
+- State is immutable records. Transitions are pure functions returning new state.
+- Transitions return events describing what happened; callers animate from
+  events rather than diffing state.
+- Content (letter frequencies, score curves, reward tables) is data under
+  `Content/`, not literals buried in logic.
+
+## Strictness
+
+Nullable is enabled and warnings are errors here. Do not suppress a warning to
+get a build green; fix it, or justify the suppression in the PR. Public types
+and non-obvious members need XML doc comments.
+
+Add an abstraction when a second concrete case exists, not when you can imagine
+one. No DI container, no MediatR, no repository pattern.
