@@ -1,9 +1,9 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
   <PropertyGroup>
-    <!-- Godot-generated projects under src/ (e.g. WordRoguelike.Game) must not
-         inherit Core's strictness. Their source generators and generated csproj
-         can emit warnings we do not control. -->
+    <!-- Strictness is relaxed here because Godot's source generators and its
+         generated .csproj emit warnings we do not control. Not a licence for
+         sloppy code — only for not failing the build on generated output. -->
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
