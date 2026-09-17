@@ -1,0 +1,36 @@
+---
+description: Godot layer conventions for WordRoguelike.Game
+globs: src/WordRoguelike.Game/**/*.cs
+alwaysApply: false
+---
+
+# Game: the Godot layer
+
+This layer is a view. It owns no rules.
+
+If a scene or node decides whether a word is valid, what something scores, or
+what happens next, that logic is in the wrong place and belongs in
+`WordRoguelike.Core`.
+
+## Shape
+
+One controller node holds the current `RunState` and an `IRandomSource`. Input
+handlers build a `PlayerAction`, call into Core, store the returned state, and
+feed the returned events into an animation queue. Nodes read state; they never
+mutate it.
+
+## Constraints
+
+Strictness is relaxed here because Godot's source generators and its generated
+`.csproj` emit warnings we do not control. That is not licence for sloppy code,
+only for not failing the build on generated output.
+
+C# Android export is experimental: arm64 and x64 only, linux-bionic Mono
+runtime, no Android bindings. Prefer Godot's own APIs over .NET platform APIs.
+
+Release builds may trim. Anything reflection-based (save serialization above
+all) must be verified in a release build, not just a debug APK.
+
+Godot regenerates this project's `.csproj` if it goes missing. The
+`ProjectReference` to Core is committed and must be re-checked after any Godot
+version upgrade.

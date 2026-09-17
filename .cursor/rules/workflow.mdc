@@ -1,0 +1,46 @@
+---
+description: Git, commit, branch and PR conventions for this repo. Apply when committing, opening a pull request, or naming a branch.
+alwaysApply: false
+---
+
+# Workflow
+
+## Commits
+
+Conventional Commits. Subject under 72 chars, imperative, no trailing period.
+
+```
+feat(core): weight letter bag by frequency table
+fix(core): reshuffle discard when draw pile empties mid-hand
+test(core): cover scoring multipliers for 7-letter words
+```
+
+Describe what changed, not where the work came from. `fix PR13 review findings`
+is a bad subject; `scope build strictness to Core` is a good one.
+
+Footer: `Closes #42`.
+
+## Branches
+
+`feat/42-letter-bag-draw`, `fix/57-shuffle-off-by-one`, `chore/12-bump-godot`.
+The issue number is part of the name. One issue, one branch, one PR.
+
+Branches live hours to days. Older than four days means the issue was too big
+and should have been split.
+
+## Pull requests
+
+`main` is protected. Never commit to it directly, never suggest doing so.
+
+Fill in `.github/pull_request_template.md` completely, including the review
+brief that tells a reviewer where to attack. CI must be green before review.
+Squash merge, then delete the branch.
+
+## Before committing
+
+Run `dotnet format WordRoguelike.Core.sln` — CI fails on unformatted code.
+
+## Decisions
+
+Non-reversible choices go in `docs/adr/` using `docs/adr/template.md`. Never
+delete an ADR; supersede it and mark the old one's status.
