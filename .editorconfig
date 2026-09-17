@@ -113,7 +113,11 @@ dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_simplified_interpolation = true:warning
 
 # Diagnostic severities
-dotnet_diagnostic.IDE0005.severity = warning  # Remove unnecessary using directives
-dotnet_diagnostic.IDE0090.severity = warning  # Use new(...)
-dotnet_diagnostic.IDE0007.severity = warning  # Use var instead of explicit type
-dotnet_diagnostic.IDE0008.severity = warning  # Use explicit type instead of var
+# Remove unnecessary using directives
+dotnet_diagnostic.IDE0005.severity = warning
+# Use new(...)
+dotnet_diagnostic.IDE0090.severity = warning
+# Use var instead of explicit type
+dotnet_diagnostic.IDE0007.severity = warning
+# Use explicit type instead of var
+dotnet_diagnostic.IDE0008.severity = warning
