@@ -1,0 +1,29 @@
+---
+description: Test conventions for the xUnit suite
+globs: tests/**/*.cs
+alwaysApply: false
+---
+
+# Tests
+
+xUnit. Name tests `Method_Scenario_ExpectedResult`.
+
+Test behaviour, not implementation. A test that restates the code it covers
+catches nothing and blocks refactoring.
+
+Every issue needs the happy path plus at least two edge cases. The edges that
+actually matter in this project:
+
+- empty bag; drawing more tiles than the bag holds
+- reshuffle triggered mid-draw when the draw pile empties
+- a word reusing a single tile twice
+- a word longer than the hand; zero-length input
+- removing the last copy of a letter from the bag
+
+Seeded behaviour must assert *reproducibility*, not plausibility: run the same
+seed twice and assert the sequences are equal. Never assert on a specific
+shuffled order produced by the current implementation, because that couples the
+test to the RNG algorithm rather than to determinism.
+
+Use real instances over mocks. `IRandomSource` and `IWordSource` exist so tests
+can pass simple fakes; nothing else needs an interface.
