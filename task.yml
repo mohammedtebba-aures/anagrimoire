@@ -1,0 +1,60 @@
+name: Task
+description: A unit of work that can enter a sprint
+labels: ["needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An issue without acceptance criteria is not ready for a sprint.
+        Write them before pulling this onto the board, not while building it.
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What is true after this is done, from the player's or the system's point of view.
+      placeholder: A player can draw a hand of seven tiles from a bag with a known seed and get the same hand every time.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Checkable statements. Each one should map to a test or a demoable step.
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      description: Estimate before starting. Record actual time in a comment when you finish.
+      options:
+        - S (under 2h)
+        - M (half a day)
+        - L (a day or more, consider splitting)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options:
+        - Core (rules engine, no Godot)
+        - Game (Godot scenes, input, rendering)
+        - Infra (CI, build, release)
+        - Docs / ADR
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes, risks, open questions
+      description: Anything you already know will be awkward. Unknowns worth flagging before starting.
