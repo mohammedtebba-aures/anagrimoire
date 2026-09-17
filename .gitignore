@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.nupkg
+*.snupkg
+
+# Godot
+.godot/
+.mono/
+*.translation
+export.cfg
+export_credentials.cfg
+android/
