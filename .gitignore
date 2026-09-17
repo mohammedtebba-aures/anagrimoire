@@ -10,8 +10,5 @@ TestResults/
 
 # Godot
 .godot/
-.mono/
-*.translation
-export.cfg
 export_credentials.cfg
 android/
