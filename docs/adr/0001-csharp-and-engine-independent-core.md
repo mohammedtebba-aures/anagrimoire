@@ -1,6 +1,6 @@
 # ADR 0001: C# with an engine-independent rules core
 
-- **Status:** Accepted
+- **Status:** Accepted. Target platform amended by [ADR 0002](0002-target-pc-not-android.md): the game now targets PC, not Android. The C# and Core decision below still stands.
 - **Date:** 2026-09-17
 - **Deciders:** Moh
 
