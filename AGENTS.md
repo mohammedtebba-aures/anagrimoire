@@ -1,6 +1,6 @@
 # Anagrimoire
 
-A word roguelike for Android. Godot 4 with C#. Solo project, run with team
+A word roguelike for PC (Windows and Linux). Godot 4 with C#. Solo project, run with team
 practices deliberately.
 
 ## Non-negotiable architecture
@@ -41,9 +41,9 @@ docs/adr/                   architecture decision records
 
 ## Current state
 
-Sprint 0. The rules engine does not exist yet. Issue #2 (proving C# Android
-export works end to end) is **blocking** — it can invalidate the language
-choice in ADR 0001, so nothing else should be built on top until it passes.
+Sprint 0. The rules engine does not exist yet. Issue #2 (proving C# desktop
+export works end to end on Windows and Linux) should pass before game code is
+built on top. ADR 0002 records why the target moved from Android to PC.
 
 Sprints 0 and 1 produce **no UI**. The first milestone is a complete run
 playable as text through a console harness. If it is not fun as text, art will
@@ -95,13 +95,14 @@ buys.
 
 ## Known constraints
 
-- C# Android export in Godot 4 is flagged experimental. Android uses the
-  linux-bionic Mono runtime, arm64 and x64 only, with no Android bindings, so
-  some platform APIs are unavailable. Prefer Godot's own APIs.
-- Release builds may enable trimming, which breaks reflection-based code that
-  works fine in debug. Anything reflective (save serialization is the usual
-  culprit) must be verified in a release build, not just a debug APK.
-- C# web export is not supported. There is no browser build.
+- Targets are Windows and Linux desktop (ADR 0002). Both must be tested on a
+  real machine; "it exported" is not "it runs". Linux is also the path to
+  Steam Deck.
+- Release exports can behave differently from the editor. Anything reflective
+  (save serialization is the usual culprit) must be verified in an exported
+  release build, not just by running from the editor.
+- C# web export is not supported. There is no browser build; playtests use
+  downloadable builds.
 - The word list licence is recorded in ADR 0003. Do not swap the word list
   without checking the replacement's licence permits commercial use.
 
